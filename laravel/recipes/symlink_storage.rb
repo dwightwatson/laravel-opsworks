@@ -6,7 +6,7 @@ node[:deploy].each do |application, deploy|
     code <<-EOH
     mv current/storage/* shared
     rm -rf current/storage
-    ln -s shared current/storage
+    ln -s #{deploy[:deploy_to]}/shared #{deploy[:deploy_to]}/current/storage
     EOH
   end
 end
