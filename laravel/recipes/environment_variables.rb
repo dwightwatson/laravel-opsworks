@@ -7,7 +7,7 @@ node[:deploy].each do |application, deploy|
 
     variables(
       database: deploy[:database],
-      variables: deploy[application.to_s][:environment],
+      variables: (deploy[application.to_s][:environment] rescue nil),
     )
 
     only_if ::File.directory?("#{deploy[:deploy_to]}/current")
