@@ -1,0 +1,6 @@
+name "composer"
+maintainer "Dwight Watson"
+maintainer_email "dwight@studiousapp.com"
+license "MIT"
+description "Installs Composer and project dependencies"
+version "1.0.0"
