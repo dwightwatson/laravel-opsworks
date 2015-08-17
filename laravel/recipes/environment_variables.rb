@@ -1,15 +1,15 @@
 node[:deploy].each do |application, deploy|
   template "#{deploy[:deploy_to]}/current/.env" do
     source ".env.erb"
-    mode 0600
+    mode 0755
     owner deploy[:user]
     group deploy[:group]
 
     variables(
       database: deploy[:database],
-      variables: (deploy[:environment_variables] rescue {})
+      variables: deploy[:environment_variables] rescue nil,
     )
 
-    only_if { ::File.directory?("#{deploy[:deploy_to]}/current") }
+    only_if ::File.directory?("#{deploy[:deploy_to]}/current")
   end
 end
