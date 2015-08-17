@@ -4,6 +4,7 @@ node[:deploy].each do |application, deploy|
     user "root"
     cwd "#{deploy[:deploy_to]}"
     code <<-EOH
+    chmod -R 777 current/storage/app current/storage/framework current/storage/logs
     mv current/storage/* shared
     rm -rf current/storage
     ln -s #{deploy[:deploy_to]}/shared #{deploy[:deploy_to]}/current/storage
